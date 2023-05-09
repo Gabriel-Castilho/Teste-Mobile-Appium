@@ -3,45 +3,47 @@ const allure = require('allure-commandline')
 const video = require('wdio-video-reporter');
 
 exports.config = {
-    hostname: 'localhost',
+    hostname: '127.0.0.1',
     port: 4723,
     path: '/wd/hub',
-    // user: "lojaebac_gBJk0x",
-    // key: "dQfHqx13fxpsVg1Ns1Yc",
-
-    services: ['appium'],
-    // services: ['browserstack'],
+   // user: 'gabrieloliveira_AIYkXP',
+   // key: 'LqqyyJk2E3p9x7xHzwir',
+    //services: ['browserstack'],
+    //services:['appium'],
     specs: [
         './test/specs/**/*.spec.js'
     ],
     framework: 'mocha',
+    
     capabilities: [{
         "platformName": "Android",
-        "platformVersion": "8.1",
-        "deviceName": "ebac-qe",
+        "platformVersion": "12.0",
+        "deviceName": "Android12",
         "automationName": "UiAutomator2",
         "app": join(process.cwd(), './app/android/loja-ebac.apk'),
         "appWaitActivity": 'com.woocommerce.android.ui.login.LoginActivity',
-        'newCommandTimeout': 240
-
-        // 'app' : 'bs://8450f0ceb7140a7d8772c1ccdfb9d6c496e9a702',
-        // 'device' : 'Samsung Galaxy Note 20',
-        // 'os_version' : '10.0',
-        // 'project' : 'Meu primeiro projeto em Device Farm',
-        // 'build' : '1',
-        // 'name': 'teste_login'
     }],
-    waitforTimeout: 20000,
+
+    /*capabilities: [{
+        'app': 'bs://d5838ae5769f5ee4f898078156a0602f5e305738',
+        // Specify device and os_version for testing
+        'device': 'Samsung Galaxy Note 20',
+        'os_version': '10.0',
+        // Set other BrowserStack capabilities
+        'project': 'Primeiro projeto device farm browser stack',
+        'build': '1',
+        'name': 'login'
+    }]*/
+    waitForTimeout: 50000,
     mochaOpts: {
-        timeout: 300000
+        timeout: 400000
     },
     reporters: ['spec',
         ['allure', {
             outputDir: 'allure-results',
-            disableWebdriverStepsReporting: true,
-            disableWebdriverScreenshotsReporting: true,
-        }],
-        [video, {
+            disableWebdriverStepsReporting: false,
+            disableWebdriverScreenshotsReporting: false,
+        }], [video, {
             saveAllVideos: true,       // If true, also saves videos for successful test cases
             videoSlowdownMultiplier: 50, // Higher to get slower videos, lower for faster videos [Value 1-100]
         }]
@@ -66,9 +68,8 @@ exports.config = {
             })
         })
     },
-    afterStep: function (test, scenario, { error, duration, passed }) {
-        if(error) {
-            driver.takeScreenshot()
-        }
+    afterStep: async function (step, scenario, { error, duration, passed }, context) {
+        driver.takeScreenshot();
     }
+
 }

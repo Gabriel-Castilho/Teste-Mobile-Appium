@@ -7,6 +7,7 @@ class MyStoreScreen {
         return $('id:toolbar_subtitle')
     }
 
+    //como pegar texto
     async getStoreName(){
         return await this.#myStoreName.getText()
     }
