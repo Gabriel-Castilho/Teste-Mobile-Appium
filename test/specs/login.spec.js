@@ -22,7 +22,7 @@ describe('Acess Admin Panel', () => {
     await registerProduct.goToProducts()
     await registerProduct.goToModalRegister()
     await registerProduct.goToRegisterproduct()
-    await registerProduct.registerProduct("Botas Voadoras")
+    await registerProduct.registerProduct("Botas Voadoras2")
 
   })
 })
