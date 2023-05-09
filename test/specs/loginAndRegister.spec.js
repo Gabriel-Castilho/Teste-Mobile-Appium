@@ -16,14 +16,13 @@ describe('Acess Admin Panel', () => {
     await loginScreen.login(user, password)
     await loginScreen.goToTwoFactorAuth();
     await loginScreen.twoFactorLogin(password)
-    //  expect(await myStoreScreen.myStoreLogoIsDisplayed()).toBeTruthy()
-    //   expect(await myStoreScreen.getStoreName()).toEqual('EBAC - Shop')
-
+    //expect(await myStoreScreen.myStoreLogoIsDisplayed()).toBeTruthy()
+    expect(await myStoreScreen.getStoreName()).toEqual('EBAC - Shop')
     await registerProduct.goToProducts()
     await registerProduct.goToModalRegister()
     await registerProduct.goToRegisterproduct()
     await registerProduct.registerProduct("Botas Voadoras")
-
+    expect (await registerProduct.showMessage()).toEqual('Product published')
   })
 })
 
