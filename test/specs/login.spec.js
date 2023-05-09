@@ -8,7 +8,7 @@ let password = 'GD*peToHNJ1#c$sgk08EaYJQ'
 let storeUrl = 'http://lojaebac.ebaconline.art.br'
 
 describe('Acess Admin Panel', () => {
-  it('should login with valid credentials', async () => {
+  it('should login and register product', async () => {
     await homeScreen.goToLogin()
     await loginScreen.setStoreAddress(storeUrl)
     await loginScreen.continue()
@@ -22,7 +22,7 @@ describe('Acess Admin Panel', () => {
     await registerProduct.goToProducts()
     await registerProduct.goToModalRegister()
     await registerProduct.goToRegisterproduct()
-    await registerProduct.registerProduct("Botas Voadoras2")
+    await registerProduct.registerProduct("Botas Voadoras3")
 
   })
 })
